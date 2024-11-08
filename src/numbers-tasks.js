@@ -372,18 +372,7 @@ function numberToStringInBase(number, base) {
     throw new Error('Base must be between 2 and 36');
   }
 
-  const sign = number < 0 ? '-' : '';
-  let num = Math.abs(number);
-
-  let result = '';
-  do {
-    const remainder = num % base;
-    result =
-      (remainder < 10 ? remainder : String.fromCharCode(remainder + 87)) +
-      result;
-    num = Math.floor(num / base);
-  } while (num > 0);
-  return sign + result;
+  return number.toString(base);
 }
 
 /**
@@ -496,8 +485,7 @@ function isInteger(number) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  const result = parseFloat(str);
-  return Number.isNaN(result) ? NaN : result;
+  return parseFloat(str);
 }
 
 /**
@@ -641,7 +629,7 @@ function getRandomInteger(min, max) {
 }
 
 /**
- * Returns the length of the hypotenuse of a right triangle.
+ *  .
  *
  * @param {number} a
  * @param {number} b
@@ -651,11 +639,7 @@ function getRandomInteger(min, max) {
  * 3, 4 => 5
  */
 function getHypotenuse(a, b) {
-  const max = Math.max(Math.abs(a), Math.abs(b));
-  const min = Math.min(Math.abs(a), Math.abs(b));
-  if (max === 0) return 0;
-  const ratio = min / max;
-  return max * Math.sqrt(1 + ratio * ratio);
+  return Math.sqrt(a ** 2 + b ** 2)
 }
 
 /**
@@ -672,8 +656,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  if (number < 1) return 0; // Для 0 и отрицательных чисел
-  return Math.floor(number / 2); // Для положительных чисел
+  return Math.round(Math.abs(number / 2));
 }
 
 module.exports = {
